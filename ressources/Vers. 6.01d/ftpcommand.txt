@@ -1,0 +1,7 @@
+open 192.168.33.123
+import
+123_abc
+lcd C:\FTP\temporary
+cd Abaco\
+mget FICWLST005*
+quit

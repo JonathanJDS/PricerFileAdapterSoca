@@ -1,0 +1,6 @@
+open 192.168.33.123
+import
+123_abc
+cd Abaco\
+delete Tmp_INFO_EXT2.csv
+quit

@@ -1,0 +1,1 @@
+rsh 10.73.32.12 -l eeg rm /usr/serveur/caisse/data/0697/E/INFO*.*

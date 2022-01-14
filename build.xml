@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+ 
+ <project default="all" name="PricerFileAdapterSoca" basedir=".">
+ 
+ <property name="app.name" value="PricerFileAdapterSoca" />
+ <property name="app.version" value="R1.0" />
+ <property name="app.main.class" value="Start" />
+ <property name="dist.home" value="${basedir}\PricerFileAdapterSoca" />
+ <property name="bin.home" value="${basedir}/bin" />
+ <property name="encoding.compilation" value="UTF-8" />
+ <property name="java.version" value="1.6" />
+ 
+ 
+ 
+ <target name="all" depends="init, compile, create_run_jar" description="clean and compile jar distribution" />
+ 
+ <target name="init">
+ 
+ <echo message	=	"Ant Release	: ${ant.version}"	/>
+ <echo message	=	"Workspace		: ${basedir}"		/>
+ <echo message	=	"dist home 		: ${dist.home}"		/>
+ <delete dir	=	"${dist.home}" 						/>
+ 
+ 
+ <copy todir	=	"${dist.home}\service"				>	<fileset dir="${basedir}\service"		/>	</copy>
+ <copy file="${basedir}\preference.ini" todir="${dist.home}"/>
+
+ </target>
+ 
+ 
+ 
+ 
+ <target name="compile" description="Compile Java sources to class files">
+	<path id="compile.classpath">
+	<fileset dir="${basedir}"><include name="**/*.jar"/></fileset>
+	</path>
+	
+		
+		<mkdir dir="${bin.home}" />
+		<javac destdir="${bin.home}" source="${java.version}" target="1.6" debug="true" deprecation="true" optimize="true" encoding="${encoding.compilation}">
+		<src path="${basedir}/src" />
+		<include name="**/*.java" />
+		<classpath refid="compile.classpath" />
+			
+		
+	</javac>
+	</target>
+ 
+ 
+ 
+ 
+ 
+  <target name="create_run_jar">
+     
+        <jar destfile="${dist.home}/${app.name}.jar" filesetmanifest="mergewithoutmain">
+           <manifest>
+           <attribute name="Main-Class" value="${app.main.class}"/>
+           <attribute name="Class-Path" value="."/>
+           </manifest>
+           <fileset 	dir="${basedir}\bin"/>
+       	
+       		
+       	<zipfileset excludes="META-INF/*.SF" src="${basedir}\lib\commons-net-3.6.jar"/>
+       	<zipfileset excludes="META-INF/*.SF" src="${basedir}\lib\ini4j-0.5.4.jar"/>
+	 	<zipfileset excludes="META-INF/*.SF" src="${basedir}\lib\log4j-1.2.17.jar"/>	
+	 	<zipfileset excludes="META-INF/*.SF" src="${basedir}\lib\cron4j-2.2.5.jar"/>	
+        <zipfileset excludes="META-INF/*.SF" src="${basedir}\lib\mysql-connector-java-8.0.17.jar"/>	
+          
+        </jar>
+    
+         
+        
+</target>
+ 
+ 
+ </project>

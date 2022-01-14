@@ -1,0 +1,7 @@
+open 128.11.25.3
+UftpC
+passeC
+lcd C:\FTP\temporary
+cd Export_EVO_C\
+mget FICWLST005*
+quit
